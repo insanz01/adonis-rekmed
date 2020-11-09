@@ -21,7 +21,21 @@ Route.get('/', () => {
 })
 
 Route.group(() => {
+	// patient
 	Route.get('patients', 'PatientController.index')
-	Route.post('patients', 'PatientController.store')
-	Route.get('patient', 'PatientController.getOne')
+	Route.get('patient/:id', 'PatientController.show')
+	Route.post('patient', 'PatientController.store')
+
+	// subjective
+	Route.get('subjectives', 'SubjectiveController.index')
+	Route.get('subjective', 'SubjectiveController.show')
+	Route.post('subjective', 'SubjectiveController.store')
+
+	// objective
+
+	// assessment
+
+	// plan
+
+	// receipt
 }).prefix('api/v1')

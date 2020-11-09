@@ -9,25 +9,30 @@ class PatientController {
     const patients = await Patient.all()
 
     return {
+      code: 200,
+      status: 'OK',
       data: patients
     }
   }
 
-  async getOne ({ request, response }) {
-    const id_pasien = request.input('ID_pasien')
+  async show ({ params, request, response }) {
+    const id_pasien = params.id
 
-    const patient = await Patient.find(id_pasien)
+    try {
+      const patient = await Patient.find(id_pasien)
 
-    if(patient) {
       return {
         code: 200,
         status: 'OK',
         data: patient
       }
-    } else {
+    } catch(e) {
+      console.error(e)
+
       return {
         code: 400,
-        status: 'Data not exist'
+        status: 'Data not exist',
+        message: e
       }
     }
 
